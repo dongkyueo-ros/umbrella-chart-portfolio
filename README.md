@@ -116,7 +116,8 @@ helm repo index .
 생성된 Repository를 Helm에 등록합니다.
 
 ```bash
-helm repo add myrepo https://your.repo.url/
+helm repo add umbrella-chart-portfolio https://dongkyueo-ros.github.io/umbrella-chart-portfolio/
+
 ```
 
 이후, `helm repo list` 명령어로 등록된 Repository를 확인할 수 있습니다.
