@@ -167,8 +167,3 @@ helm uninstall umbrella-chart-portfolio
 ## 기여 및 유지보수
 
 버그 리포트나 기능 요청은 GitHub 이슈를 통해 받고 있으며, Pull Request도 환영합니다.
-
-## 라이선스
-
-이 프로젝트는 [MIT 라이선스](LICENSE)를 따릅니다.
-```
