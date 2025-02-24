@@ -76,11 +76,23 @@ helm dep update
 
 ### 1.2. 차트 설치
 
-전체 Chart를 Kubernetes 클러스터에 설치하려면 다음 명령어를 실행합니다.
+전체 Chart를 Kubernetes 클러스터에 설치하려면, 먼저 Helm Repository 에서 차트를 다운로드 한 후 필요한 값들을 할당하여 설치하는 것을 권장합니다.
+
+#### Helm Repository 에서 차트 다운로드 (압축 해제)
 
 ```bash
-helm install umbrella-chart-portfolio ./umbrella-chart-portfolio
+helm pull umbrella-chart-portfolio/umbrella-chart --untar
 ```
+이 명령어를 실행하면, 저장소에 등록된 `umbrella-chart` 차트를 다운로드하고 압축 해제하여 로컬 디렉터리에 저장
+
+#### 필요한 값 할당 후 차트 설치
+
+```bash
+helm install my-release ./umbrella-chart
+```
+
+**주의**: 상위 `values.yaml` 에 필요한 값이 할당되지 않으면 차트 설치가 실패할 수 있음, 따라서 설치 전에 반드시 기본 설정 값을 확인하고, 필요 시 값을 수정해야 합니다.
+
 
 ### 1.3. 차트 업그레이드
 
