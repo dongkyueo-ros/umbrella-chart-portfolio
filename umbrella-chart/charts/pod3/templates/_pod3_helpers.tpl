@@ -30,20 +30,18 @@ Create chart name and version as used by the chart label.
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
-
-{{/*
-Service labels
-*/}}
-{{- define "pod3.pod3Labels" -}}
-{{- if and .Values.service (hasKey .Values.service "pod3Labels") }}
-{{- with .Values.service.pod3Labels }}
-{{- range $key, $value := . }}
-{{ $key }}: {{ $value }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
+# {{/*
+# Service labels
+# */}}
+# {{- define "pod3.pod3Labels" -}}
+# {{- if and .Values.service (hasKey .Values.service "pod3Labels") }}
+# {{- with .Values.service.pod3Labels }}
+# {{- range $key, $value := . }}
+# {{ $key }}: {{ $value }}
+# {{- end }}
+# {{- end }}
+# {{- end }}
+# {{- end }}
 
 {{/*
 Selector labels

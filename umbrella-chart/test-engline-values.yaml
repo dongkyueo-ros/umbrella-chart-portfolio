@@ -190,7 +190,7 @@ pod2:
     targetPort: <service_target_port>
     type: ClusterIP
 
-    restLabels:
+    pod2Labels:
       app.kubernetes.io/name: ingress-nginx
       app.kubernetes.io/part-of: ingress-nginx
 

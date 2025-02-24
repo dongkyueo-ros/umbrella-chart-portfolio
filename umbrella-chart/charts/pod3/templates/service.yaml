@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: {{ include "pod3.fullname" . }}-service
   namespace: {{ .Release.namespace }}
-  labels:
-    {{- include "pod3.pod3Labels" . | nindent 4 }}
 spec:
   {{- if and .Values.service (hasKey .Values.service "type") }}
   type: {{ .Values.service.type }}
