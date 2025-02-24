@@ -4,7 +4,7 @@ metadata:
   name: {{ include "pod4.fullname" . }}-service
   namespace: {{ .Release.namespace }}
   labels:
-    {{- include "pod4.podLabels" . | nindent 4 }}
+    {{- include "pod4.pod4Labels" . | nindent 4 }}
 spec:
   {{- if and .Values.service (hasKey .Values.service "type") }}
   type: {{ .Values.service.type }}

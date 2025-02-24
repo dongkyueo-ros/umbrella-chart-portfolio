@@ -31,15 +31,18 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Common labels
+Service labels
 */}}
-# {{- define "pod4.labels" -}}
-# helm.sh/chart: {{ include "pod4.chart" . }}
-# {{- if .Chart.AppVersion }}
-# app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-# {{- end }}
-# app.kubernetes.io/managed-by: {{ .Release.Service }}
-# {{- end }}
+{{- define "pod2.pod4Labels" -}}
+{{- if and .Values.service (hasKey .Values.service "pod4Labels") }}
+{{- with .Values.service.pod4Labels }}
+{{- range $key, $value := . }}
+{{ $key }}: {{ $value }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 
 {{/*
 Selector labels
