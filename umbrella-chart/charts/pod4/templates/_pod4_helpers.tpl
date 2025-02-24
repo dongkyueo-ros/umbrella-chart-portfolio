@@ -33,7 +33,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Service labels
 */}}
-{{- define "pod2.pod4Labels" -}}
+{{- define "pod4.pod4Labels" -}}
 {{- if and .Values.service (hasKey .Values.service "pod4Labels") }}
 {{- with .Values.service.pod4Labels }}
 {{- range $key, $value := . }}
