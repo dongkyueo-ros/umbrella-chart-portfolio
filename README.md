@@ -100,16 +100,15 @@ Umbrella Chart 디렉터리에서 다음 명령어를 실행하여 차트를 패
 (이 명령은 상위 차트와 내부 서브차트 의존성 정보를 포함한 `.tgz` 파일을 생성합니다.)
 
 ```bash
-helm package .
+helm package umbrella-chart
 ```
 
 ### 2.2. index.yaml 파일 생성
 
 패키징된 차트 파일들이 위치한 디렉터리에서 다음 명령어를 실행하여 Helm Repository의 **index.yaml** 파일을 생성합니다.  
-`--url` 옵션에는 차트 패키지가 호스팅될 URL을 지정합니다.
 
 ```bash
-helm repo index . --url https://your.repo.url/
+helm repo index .
 ```
 
 ### 2.3. Repository 등록 및 확인
