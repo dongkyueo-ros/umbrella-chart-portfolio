@@ -30,16 +30,20 @@ Create chart name and version as used by the chart label.
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
+
 {{/*
-Common labels
+Service labels
 */}}
-# {{- define "pod3.labels" -}}
-# helm.sh/chart: {{ include "pod3.chart" . }}
-# {{- if .Chart.AppVersion }}
-# app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-# {{- end }}
-# app.kubernetes.io/managed-by: {{ .Release.Service }}
-# {{- end }}
+{{- define "pod3.pod3Labels" -}}
+{{- if and .Values.service (hasKey .Values.service "pod3Labels") }}
+{{- with .Values.service.pod3Labels }}
+{{- range $key, $value := . }}
+{{ $key }}: {{ $value }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 
 {{/*
 Selector labels
