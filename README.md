@@ -117,7 +117,6 @@ helm repo index .
 
 ```bash
 helm repo add umbrella-chart-portfolio https://dongkyueo-ros.github.io/umbrella-chart-portfolio/
-
 ```
 
 이후, `helm repo list` 명령어로 등록된 Repository를 확인할 수 있습니다.
