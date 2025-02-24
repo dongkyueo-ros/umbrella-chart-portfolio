@@ -1,9 +1,0 @@
-apiVersion: v2
-name: pod4
-version: 0.1.0
-description: A Helm chart for deploying the tts-wave service
-appVersion: 1.0.0
-type: application
-maintainers:
-  - email: dongkyu9303@gmail.com
-    name: leedongkyu
