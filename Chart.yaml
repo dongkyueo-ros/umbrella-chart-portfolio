@@ -1,0 +1,30 @@
+apiVersion: v2
+name: umbrella-chart
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+maintainers:
+  - email: dongkyu9303@gmail.com
+    name: leedongkyu
+
+dependencies:
+- name: pod1
+  version: "0.1.0"
+  repository: "file://charts/pod1"
+  alias: pod1
+
+- name: pod2
+  version: "0.1.0"
+  repository: "file://charts/pod2"
+  alias: pod2
+
+- name: pod3
+  version: "0.1.0"
+  repository: "file://charts/pod3"
+  alias: pod3
+
+- name: pod4
+  version: "0.1.0"
+  repository: "file://charts/pod4"
+  alias: pod4

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pod3.fullname" . }}-deployment
+  namespace: {{ .Release.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  progressDeadlineSeconds: {{ .Values.progressDeadlineSeconds }}
+  strategy:
+    {{- toYaml $.Values.strategy | nindent 4 }}
+  selector:
+    matchLabels:
+      app: {{ include "pod3.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "pod3.fullname" . }}
+    spec:
+      containers:
+      - name: {{ include "pod3.fullname" . }}
+        image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        {{- if and .Values (hasKey .Values "containerPort") }}
+          - containerPort: {{ .Values.containerPort }}
+        {{- end }}
+        startupProbe: 
+          {{- toYaml $.Values.startupProbe | nindent 10 }}
+        livenessProbe: 
+          {{- toYaml $.Values.livenessProbe | nindent 10 }}
+        readinessProbe: 
+          {{- toYaml $.Values.readinessProbe | nindent 10 }}
+        workingDir: {{ .Values.workingDir }}
+        {{- with $.Values.command }}
+        command: [{{- range $index, $arg := . -}}{{ if $index }}, {{ end }}"{{ $arg }}"{{- end -}}]
+        {{- end }}
+        {{- with $.Values.args }}
+        args: [{{- range $index, $arg := . -}}{{ if $index }}, {{ end }}"{{ $arg }}"{{- end -}}]
+        {{- end }}
+        envFrom:
+        - configMapRef:
+            name: {{ include "pod3.fullname" . }}-config
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        {{- with .Values.volumeMounts }}
+        volumeMounts:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,399 @@
+##### POD1 #####
+pod1:
+
+  #### POD1 ConfigMap
+  data:
+    <config_data_valuse>
+
+  #### POD1 Deployment
+  #nameSuffix: ""
+  nameOverride: "<pod_name>"
+  fullnameOverride: "<pod_full_name>"
+
+  replicaCount: 1
+  progressDeadlineSeconds: 600
+
+  # deployment process
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  # container image
+  image:
+    registry: <docker_registry>
+    repository: <docker_registry_path>
+    tag: <docker_image_tag>
+
+  containerPort: <container_port>
+
+  # health checks
+  startupProbe:
+    grpc:
+      port: <container_port>
+    initialDelaySeconds: 60
+    periodSeconds: 5
+    failureThreshold: 2
+  livenessProbe:
+    grpc:
+      port: <container_port>
+    initialDelaySeconds: 70
+    periodSeconds: 15
+    failureThreshold: 3
+  readinessProbe:
+    tcpSocket:
+      port: <container_port>
+    initialDelaySeconds: 80
+    periodSeconds: 15
+    failureThreshold: 3
+
+  workingDir: <working_directory>
+  command: ["<command>"]
+  args: ["<augment>"]
+
+
+  # resouces
+  resources:
+    requests:
+      cpu: "2000m"
+      memory: "4000Mi"
+    limits:
+      cpu: "4000m"
+      memory: "10000Mi"
+
+  # volume mountm, vlouses
+  volumeMounts:
+    - name: <volume_mounts_name>
+      mountPath: <mount_path>
+
+  volumes:
+  - name: <volumes_name>
+    hostPath:
+      path: <host_path>
+      type: Directory
+
+  #### POD1 Service
+  service:
+    port: <service_port>
+    targetPort: <service_target_port>
+    type: ClusterIP
+
+    pod1Labels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
+
+
+  #### POD1 Ingress
+  ingress:
+    className: nginx
+
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/grpc-backend: "true"
+      nginx.ingress.kubernetes.io/secure-backends: "true"
+      nginx.ingress.kubernetes.io/enable-http2: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+
+    tls:
+    - hosts:
+      - <ingress_tls_hosts>
+      secretName: <ingress_tls_secret_name>
+
+    rules:
+      hosts: 
+        - <ingress_rules_hosts>
+
+  #### POD1 HPA
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 70
+    # targetMemoryUtilizationPercentage: 70
+
+##### POD2 #####
+pod2:
+
+  #### POD2 ConfigMap
+  data:
+    <config_data_valuse>
+
+
+  #### POD2 Deployment
+  #nameSuffix: ""
+  nameOverride: "<pod_name>"
+  fullnameOverride: "<pod_full_name>"
+
+  replicaCount: 1
+  progressDeadlineSeconds: 300
+
+  # deployment process
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  # container image
+  image:
+    registry: <docker_registry>
+    repository: <docker_registry_path>
+    tag: <docker_image_tag>
+
+  startupProbe:
+    tcpSocket:
+      port: <container_port>
+    initialDelaySeconds: 180
+    periodSeconds: 5
+    failureThreshold: 2
+  livenessProbe:
+    httpGet:
+      path: <domain_path>
+      port: 443
+      scheme: HTTPS
+      host: <domain>
+    initialDelaySeconds: 190
+    periodSeconds: 30
+    failureThreshold: 3
+    timeoutSeconds: 30
+  readinessProbe:
+    tcpSocket:
+      port: <container_port>
+    initialDelaySeconds: 200
+    periodSeconds: 15
+    failureThreshold: 3
+
+  workingDir: <working_directory>
+  command: ["<command>"]
+  args: ["<augment>"]
+  
+  # resouces
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "700Mi"
+    limits:
+      cpu: "2000m"
+      memory: "2000Mi"
+
+  # volume mountm, vlouses
+  volumeMounts: []
+
+  volumes: []
+
+  #### POD2 Service
+  service:
+    port: <service_port>
+    targetPort: <service_target_port>
+    type: ClusterIP
+
+    restLabels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
+
+  #### TTS-Rest Ingress
+
+  ingress:
+    className: nginx
+
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/secure-backends: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+
+    tls:
+    - hosts:
+      - <ingress_tls_hosts>
+      secretName: <ingress_tls_secret_name>
+
+    rules:
+      hosts: 
+        - <ingress_rules_hosts>
+
+
+##### POD3 #####
+pod3:
+  
+  #### POD3 ConfigMap
+  data:
+    <config_data_valuse>
+
+  #### POD3 Deployment
+  #nameSuffix: ""
+  nameOverride: "<pod_name>"
+  fullnameOverride: "<pod_full_name>"
+
+  replicaCount: 1
+  progressDeadlineSeconds: 300
+
+  # deployment process
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  # container image
+  image:
+    registry: <docker_registry>
+    repository: <docker_registry_path>
+    tag: <docker_image_tag>
+
+
+  startupProbe:
+    grpc:
+      port: <container_port>
+    initialDelaySeconds: 1200
+    periodSeconds: 5
+    failureThreshold: 2
+  livenessProbe:
+    grpc:
+      port: <container_port>
+    initialDelaySeconds: 70
+    periodSeconds: 15
+    failureThreshold: 3
+    timeoutSeconds: 15
+  readinessProbe:
+    tcpSocket:
+      port: <container_port>
+    initialDelaySeconds: 80
+    periodSeconds: 15
+    failureThreshold: 3
+
+  workingDir: <working_directory>
+  command: ["<command>"]
+  args: ["<augment>"]
+
+  # resouces
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "3000Mi"
+      gpumem2.com/vram: 15
+    limits:
+      cpu: "1500m"
+      memory: "6000Mi"
+      gpumem2.com/vram: 15
+
+  # volume mountm, vlouses
+  volumeMounts:
+    - name: <volume_mounts_name>
+      mountPath: <mount_path>
+
+  volumes:
+  - name: <volumes_name>
+    hostPath:
+      path: <host_path>
+      type: Directory
+
+  #### POD3 Service
+  service:
+    port: <service_port>
+    targetPort: <service_target_port>
+    type: ClusterIP
+
+  #### POD3 HPA
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 70
+    # targetMemoryUtilizationPercentage: 70
+
+##### POD4 #####
+pod4:
+
+  #### POD4 ConfigMap
+  data:
+    <config_data_valuse>
+
+  #### POD4 Deployment
+  #nameSuffix: ""
+  nameOverride: "<pod_name>"
+  fullnameOverride: "<pod_full_name>"
+
+  replicaCount: 1
+  progressDeadlineSeconds: 300
+
+  # deployment process
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  # container image
+  image:
+    registry: <docker_registry>
+    repository: <docker_registry_path>
+    tag: <docker_image_tag>
+
+  containerPort: <container_port>
+
+  # health checks
+  startupProbe:
+    grpc:
+      port: <container_port>
+    initialDelaySeconds: 1200
+    periodSeconds: 5
+    failureThreshold: 2
+  livenessProbe:
+    grpc:
+      port: <container_port>
+    initialDelaySeconds: 70
+    periodSeconds: 15
+    failureThreshold: 3
+    timeoutSeconds: 15
+  readinessProbe:
+    tcpSocket:
+      port: <container_port>
+    initialDelaySeconds: 80
+    periodSeconds: 15
+    failureThreshold: 3
+
+  workingDir: <working_directory>
+  command: ["<command>"]
+  args: ["<augment>"]
+
+  # resouces
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "3000Mi"
+      gpumem3.com/vram: 15
+    limits:
+      cpu: "1500m"
+      memory: "6000Mi"
+      gpumem3.com/vram: 15
+
+  # volume mountm, vlouses
+  volumeMounts:
+    - name: <volume_mounts_name>
+      mountPath: <mount_path>
+
+  volumes:
+  - name: <volumes_name>
+    hostPath:
+      path: <host_path>
+      type: Directory
+
+  #### POD4 Service
+  service:
+    port: <service_port>
+    targetPort: <service_target_port>
+    type: ClusterIP
+
+
+  #### POD4 HPA
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 70
+    # targetMemoryUtilizationPercentage: 70

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "pod2.fullname" . }}-config
+  namespace: {{ .Release.namespace }}
+data:
+{{- range $key, $value := .Values.data }}
+{{- $key | nindent 2 }}: {{ $value | quote }}
+{{- end }}
