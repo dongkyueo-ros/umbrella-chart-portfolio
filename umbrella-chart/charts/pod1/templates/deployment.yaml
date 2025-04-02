@@ -16,9 +16,14 @@ spec:
       labels:
         app: {{ include "pod1.fullname" . }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       containers:
       - name: {{ include "pod1.fullname" . }}
         image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         {{- if and .Values (hasKey .Values "containerPort") }}
           - containerPort: {{ .Values.containerPort }}

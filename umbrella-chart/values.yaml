@@ -1,0 +1,225 @@
+##### POD1 #####
+pod1:
+
+  #### POD1 ConfigMap
+  data: {}
+
+  #### POD1 Deployment
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # deployment process
+  strategy: {}
+
+  # container image
+  image:
+    registry: ""
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+
+  imagePullSecrets: []
+
+  containerPort: null
+
+  # health checks
+  startupProbe: {}
+  livenessProbe: {}
+  readinessProbe: {}
+
+  workingDir: ""
+  command: []
+  args: []
+
+  # resouces
+  resources:
+    requests: {}
+    limits: {}
+
+  # volume mountm, vlouses
+  volumeMounts: []
+  volumes: []
+
+  #### POD1 Service
+  service:
+    port: ""
+    targetPort: ""
+    type: ClusterIP
+
+    pod1Labels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
+
+
+  #### POD1 Ingress
+  ingress:
+    className: nginx
+    annotations: {}
+
+    tls: []
+    rules: []
+
+  #### POD1 HPA
+  autoscaling: {}
+
+##### POD2 #####
+pod2:
+
+  #### POD2 ConfigMap
+  data: {}
+
+  #### POD2 Deployment
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # deployment process
+  strategy: {}
+
+  # container image
+  image:
+    registry: ""
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+
+  imagePullSecrets: []
+
+  containerPort: null
+
+  # health checks
+  startupProbe: {}
+  livenessProbe: {}
+  readinessProbe: {}
+
+  workingDir: ""
+  command: []
+  args: []
+  
+  # resouces
+  resources:
+    requests: {}
+    limits: {}
+
+  # volume mountm, vlouses
+  volumeMounts: []
+  volumes: []
+
+  #### POD2 Service
+  service:
+    port: ""
+    targetPort: ""
+    type: ClusterIP
+
+    pod2Labels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
+
+  #### POD2 Ingress
+  ingress:
+    className: nginx
+    annotations: {}
+
+    tls: []
+    rules: []
+
+
+##### POD3 #####
+pod3:
+  
+  #### POD3 ConfigMap
+  data: {}
+
+  #### POD3 Deployment
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # deployment process
+  strategy: {}
+
+  # container image
+  image:
+    registry: ""
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+
+  imagePullSecrets: []
+
+  # health checks
+  startupProbe: {}
+  livenessProbe: {}
+  readinessProbe: {}
+
+  workingDir: ""
+  command: []
+  args: []
+
+  # resouces
+  resources:
+    requests: {}
+    limits: {}
+
+  # volume mountm, vlouses
+  volumeMounts: []
+  volumes: []
+
+  #### POD3 Service
+  service:
+    port: ""
+    targetPort: ""
+    type: ClusterIP
+
+  #### POD3 HPA
+  autoscaling: {}
+
+##### POD4 #####
+pod4:
+
+  #### POD4 ConfigMap
+  data: {}
+
+  #### POD4 Deployment
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # deployment process
+  strategy: {}
+
+  # container image
+  image:
+    registry: ""
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+
+  imagePullSecrets: []
+
+  containerPort: null
+
+  # health checks
+  startupProbe: {}
+  livenessProbe: {}
+  readinessProbe: {}
+
+  workingDir: ""
+  command: []
+  args: []
+
+  # resouces
+  resources:
+    requests: {}
+    limits: {}
+
+  # volume mountm, vlouses
+  volumeMounts: []
+  volumes: []
+
+
+  #### POD4 Service
+  service:
+    port: ""
+    targetPort: ""
+    type: ClusterIP
+
+  #### POD4 HPA
+  autoscaling: {}
