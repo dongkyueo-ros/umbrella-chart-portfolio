@@ -1,10 +1,9 @@
 # Umbrella Chart Portfolio
 
 ![Images](assets/umbrella_chart_portfolio-1-1.png)
+![Images](assets/umbrella_chart_portfolio-1-2.png)
 
 Umbrella Chart 는 여러 개의 서브차트(pod1, pod2, pod3, pod4)를 하나의 상위 차트로 묶어 관리하는 Helm Chart입니다. 이 차트를 사용하면 각 애플리케이션을 개별적으로 관리하면서, 한 번의 명령어로 전체 애플리케이션을 배포할 수 있습니다.
-
-![Images](assets/umbrella_chart_portfolio-1-2.png)
 
 ## 구성 요소
 
