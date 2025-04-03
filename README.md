@@ -132,8 +132,6 @@ helm install umbrella-chart ./umbrella-chart
 helm upgrade umbrella-chart ./umbrella-chart
 ```
 
----
-
 ## 주요 설정 값 (values.yaml)
 
 상위 `values.yaml` 파일을 통해 각 서브차트의 설정 값을 오버라이드할 수 있습니다. 예를 들어:
