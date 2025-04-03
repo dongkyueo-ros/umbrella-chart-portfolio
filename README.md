@@ -79,9 +79,9 @@ helm dep update
 Umbrella Chart 디렉터리에서 다음 명령어를 실행하여 차트를 패키징합니다.  
 
 ```bash
-helm package umbrella-chart
+helm package .
 ```
->이 명령은 상위 차트와 내부 서브차트 의존성 정보를 포함한 `.tgz` 파일을 생성합니다.
+> 이 명령은 상위 차트와 내부 서브차트 의존성 정보를 포함한 `.tgz` 파일을 생성합니다. `Chart.yaml`이 있는 디렉터리에서 실행
 
 ### 1-3. index.yaml 파일 생성
 
@@ -97,7 +97,7 @@ helm repo index .
 생성된 Repository를 Helm에 등록합니다.
 
 ```bash
-helm repo add umbrella-chart-portfolio https://dongkyueo-ros.github.io/umbrella-chart-portfolio/
+helm repo add umbrella-chart https://dongkyueo-ros.github.io/umbrella-chart-portfolio/
 helm repo update
 helm repo list
 ```
@@ -112,14 +112,14 @@ helm repo list
 #### Helm Repository 에서 차트 다운로드 (압축 해제)
 
 ```bash
-helm pull umbrella-chart-portfolio/umbrella-chart --untar
+helm pull umbrella-chart/umbrella-chart --untar --untar
 ```
 > 이 명령어를 실행하면, 저장소에 등록된 `umbrella-chart` 차트를 다운로드하고 압축 해제하여 로컬 디렉터리에 저장합니다.
 
 ### 2-2. 값 확인 및 설치
 
 ```bash
-helm install umbrella-chart ./umbrella-chart
+helm install umbrella ./umbrella-chart
 ```
 > ⚠️ `values.yaml` 파일 내 기본 값이 제대로 설정되지 않으면 설치에 실패할 수 있으므로, 사전에 확인 후 수정이 필요합니다.
 
@@ -129,7 +129,7 @@ helm install umbrella-chart ./umbrella-chart
 설정 값을 변경한 후 업그레이드하려면 다음 명령어를 사용합니다.
 
 ```bash
-helm upgrade umbrella-chart ./umbrella-chart
+helm upgrade umbrella ./umbrella-chart
 ```
 
 ## 주요 설정 값 (values.yaml)
