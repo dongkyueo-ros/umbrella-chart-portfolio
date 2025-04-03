@@ -23,7 +23,6 @@ umbrella-chart-portfolio/
 ├── charts/                # 서브차트들이 위치하는 폴더
 │   ├── pod1/
 │   │   ├── Chart.yaml
-│   │   ├── values.yaml
 │   │   └── templates/
 │   │       ├── _pod1_helpers.tpl
 │   │       ├── configmap.yaml
@@ -33,7 +32,6 @@ umbrella-chart-portfolio/
 │   │       └── service.yaml
 │   ├── pod2/
 │   │   ├── Chart.yaml
-│   │   ├── values.yaml
 │   │   └── templates/
 │   │       ├── _pod2_helpers.tpl
 │   │       ├── configmap.yaml
@@ -42,7 +40,6 @@ umbrella-chart-portfolio/
 │   │       └── service.yaml
 │   ├── pod3/
 │   │   ├── Chart.yaml
-│   │   ├── values.yaml
 │   │   └── templates/
 │   │       ├── _pod3_helpers.tpl
 │   │       ├── configmap.yaml
@@ -51,7 +48,6 @@ umbrella-chart-portfolio/
 │   │       └── service.yaml
 │   └── pod4/
 │       ├── Chart.yaml
-│       ├── values.yaml
 │       └── templates/
 │           ├── _pod4_helpers.tpl
 │           ├── configmap.yaml
