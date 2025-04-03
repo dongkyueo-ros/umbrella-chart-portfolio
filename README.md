@@ -97,7 +97,7 @@ helm repo index .
 생성된 Repository를 Helm에 등록합니다.
 
 ```bash
-helm repo add umbrella-chart https://dongkyueo-ros.github.io/umbrella-chart-portfolio/
+helm repo add umbrella-chart-portfolio https://dongkyueo-ros.github.io/umbrella-chart-portfolio/
 helm repo update
 helm repo list
 ```
@@ -112,14 +112,14 @@ helm repo list
 #### Helm Repository 에서 차트 다운로드 (압축 해제)
 
 ```bash
-helm pull umbrella-chart/umbrella-chart --untar
+helm pull umbrella-chart-portfolio/umbrella-chart --untar
 ```
 > 이 명령어를 실행하면, 저장소에 등록된 `umbrella-chart` 차트를 다운로드하고 압축 해제하여 로컬 디렉터리에 저장합니다.
 
 ### 2-2. 값 확인 및 설치
 
 ```bash
-helm install umbrella ./umbrella-chart
+helm install <chart_release_name> ./umbrella-chart
 ```
 > ⚠️ `values.yaml` 파일 내 기본 값이 제대로 설정되지 않으면 설치에 실패할 수 있으므로, 사전에 확인 후 수정이 필요합니다.
 
@@ -129,7 +129,7 @@ helm install umbrella ./umbrella-chart
 설정 값을 변경한 후 업그레이드하려면 다음 명령어를 사용합니다.
 
 ```bash
-helm upgrade umbrella ./umbrella-chart
+helm upgrade <chart_release_name> ./umbrella-chart
 ```
 
 ## 주요 설정 값 (values.yaml)
@@ -166,13 +166,13 @@ pod4:
 
 ### 1. `--set` 옵션 사용 (간단한 테스트용)
 ```bash
-helm install umbrella-chart ./umbrella-chart \
+helm install <chart_release_name> ./umbrella-chart \
   --set pod1.replicaCount=3 \
   --set pod2.image.tag=latest
 ```
-### 2. 커트텀 값 파일 사용(`test-values.yaml` 등)
+### 2. 커스텀 값 파일 사용(`test-values.yaml` 등)
 ```bash
-helm install umbrella-chart ./umbrella-chart -f test-values.yaml
+helm install <chart_release_name> ./umbrella-chart -f test-values.yaml
 ```
 > 이 방식은 설정이 많거나 반복 테스트 시 특히 유용합니다.
 
@@ -211,7 +211,7 @@ kubectl get pods -n <namespace>
 배포한 Chart를 제거하려면 다음 명령어를 실행합니다:
 
 ```bash
-helm uninstall umbrella-chart
+helm uninstall <chart_release_name>
 ```
 
 ## 기여 및 유지보수
