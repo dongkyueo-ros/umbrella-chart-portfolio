@@ -112,7 +112,7 @@ helm repo list
 #### Helm Repository 에서 차트 다운로드 (압축 해제)
 
 ```bash
-helm pull umbrella-chart/umbrella-chart --untar --untar
+helm pull umbrella-chart/umbrella-chart --untar
 ```
 > 이 명령어를 실행하면, 저장소에 등록된 `umbrella-chart` 차트를 다운로드하고 압축 해제하여 로컬 디렉터리에 저장합니다.
 
